@@ -39,13 +39,20 @@ void Change_memory(int*& p, int old, int new_memory)
 			{
 				p[i] = temp[i];
 			}
+			if (new_memory < old)
+			{
+				for (int i = 0; i < new_memory; i++) // dịch theo nhà cũ 
+				{
+					p[i] = temp[i];
+				}
+			}
 	delete[] temp; // xóa nhà cũ đi 
 }
 void Add(int*& p, int& n)
 {
 	Change_memory(p, n, n = n + 1);
-	int location ; cout << "\nEnter the location to add "; cin >> location;
-	int value; cout << "\nEnter the value to add "; cin >> value;
+	int location ; cout << "\nEnter the location to add: "; cin >> location;
+	int value; cout << "\nEnter the value to add: "; cin >> value;
 	for (int i = n - 1; i >= location; i--)
 	{
 		p[i + 1] = p[i];
@@ -56,7 +63,7 @@ void Add(int*& p, int& n)
 void Delete(int*& p, int &n)
 {
 	int location; cout << "\n Enter location to delete: "; cin >> location;// Khai báo biến vị trí xóa
-	for (int i = location; i < n-1; i++) 
+	for (int i = location; i <= n-1; i++) 
 	{
 		p[i] = p[i + 1];
 	}
